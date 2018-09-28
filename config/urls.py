@@ -5,7 +5,17 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+from django.conf.urls import url, include
+from rest_framework import routers
+from gordian_test.users import views
+
+router = routers.DefaultRouter()
+#router.register(r'users', views.UserViewSet)
+
 urlpatterns = [
+    url(r'^users/(?P<username>[a-z]+)/$', views.user_detail),
+    url(r'^', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path(
         "about/",
