@@ -6,4 +6,4 @@ User = get_user_model()
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'session')
+        fields = ('username', 'session', 'basket')
